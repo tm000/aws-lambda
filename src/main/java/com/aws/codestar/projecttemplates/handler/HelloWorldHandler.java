@@ -20,7 +20,7 @@ public class HelloWorldHandler implements RequestHandler<Object, Object> {
         System.out.println("input:" + input);
         Map<String, String> headers = new HashMap<>();
         headers.put("Content-Type", "application/json");
-        List<Stirng> languages = Arrays.asList("Java", "Ruby", "python");
+        List<String> languages = Arrays.asList("Java", "Ruby", "python");
         return new GatewayResponse(new JSONObject().put("Output", "Hello World! Hello everyone!!").toString(), headers, 200, languages);
     }
 }
