@@ -19,8 +19,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HelloWorldHandlerTest {
 
     private static final String EXPECTED_CONTENT_TYPE = "application/json";
-    private static final String EXPECTED_RESPONSE_VALUE = "Hello World!";
+    private static final String EXPECTED_RESPONSE_VALUE = "Hello World! Hello everyone!!";
     private static final int EXPECTED_STATUS_CODE_SUCCESS = 200;
+    private static final String EXPECTED_LANGUAGE1 = "Java";
+    private static final String EXPECTED_LANGUAGE2 = "Ruby";
+    private static final String EXPECTED_LANGUAGE3 = "python";
 
     // A mock class for com.amazonaws.services.lambda.runtime.Context
     private final MockLambdaContext mockLambdaContext = new MockLambdaContext();
@@ -59,5 +62,9 @@ public class HelloWorldHandlerTest {
         assertEquals(EXPECTED_RESPONSE_VALUE, jsonObjectFromResponse.get("Output"));
         assertEquals(EXPECTED_CONTENT_TYPE, response.getHeaders().get("Content-Type"));
         assertEquals(EXPECTED_STATUS_CODE_SUCCESS, response.getStatusCode());
+        assertEquals(3, response.getLanguages().length);
+        assertEquals(EXPECTED_LANGUAGE1, response.getLanguages()[0]);
+        assertEquals(EXPECTED_LANGUAGE2, response.getLanguages()[1]);
+        assertEquals(EXPECTED_LANGUAGE3, response.getLanguages()[2]);
     }
 }
