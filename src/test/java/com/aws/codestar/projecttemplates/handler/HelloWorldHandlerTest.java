@@ -63,8 +63,8 @@ public class HelloWorldHandlerTest {
         assertEquals(EXPECTED_CONTENT_TYPE, response.getHeaders().get("Content-Type"));
         assertEquals(EXPECTED_STATUS_CODE_SUCCESS, response.getStatusCode());
         assertEquals(3, response.getLanguages().size());
-        assertEquals(EXPECTED_LANGUAGE1, response.getLanguages()[0]);
-        assertEquals(EXPECTED_LANGUAGE2, response.getLanguages()[1]);
-        assertEquals(EXPECTED_LANGUAGE3, response.getLanguages()[2]);
+        assertEquals(EXPECTED_LANGUAGE1, response.getLanguages().get(0));
+        assertEquals(EXPECTED_LANGUAGE2, response.getLanguages().get(1));
+        assertEquals(EXPECTED_LANGUAGE3, response.getLanguages().get(2));
     }
 }
