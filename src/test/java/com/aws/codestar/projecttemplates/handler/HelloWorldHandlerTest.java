@@ -69,6 +69,6 @@ public class HelloWorldHandlerTest {
         // assertEquals(EXPECTED_LANGUAGE3, response.getLanguages().get(2));
 
         String response = (String) new HelloWorldHandler().handleRequest(input, mockLambdaContext);
-        assertTrue(response.startWith("<!DOCTYPE html>"));
+        assertTrue(response.startsWith("<!DOCTYPE html>"));
     }
 }
