@@ -19,6 +19,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 
 /**
  * Handler for requests to Lambda function.
@@ -44,13 +48,19 @@ public class HelloWorldHandler implements RequestHandler<S3Event, Object> {
         InputStream objectData = s3Object.getObjectContent();
         // Re-encode image to target format
         ByteArrayOutputStream os = new ByteArrayOutputStream();
-        while((i = objectData.read())!=-1) {
-            os.write(i);
+        try {
+            int i = 0;
+            while((i = objectData.read())!=-1) {
+                os.write(i);
+            }
+            os.write(13);
+            os.write(65);
+            os.write(66);
+            os.write(13);
+        } catch (Exception e) {
+            System.err.println(e);
+            System.exit(1);
         }
-        os.write(13);
-        os.write(65);
-        os.write(66);
-        os.write(13);
         InputStream is = new ByteArrayInputStream(os.toByteArray());
         // Set Content-Length and Content-Type
         ObjectMetadata meta = new ObjectMetadata();
